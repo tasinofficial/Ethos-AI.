@@ -3,15 +3,17 @@
 // Monetary values are stored as 64-bit integers in Poisha (1 BDT = 100 Poisha)
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 // The web app is installed independently in CI and locally, so it needs a
 // generated client in its own node_modules tree as well as the root client
 // used by the seed scripts.
 generator webClient {
-  provider = "prisma-client-js"
-  output   = "../apps/web/node_modules/.prisma/client"
+  provider      = "prisma-client-js"
+  output        = "../apps/web/node_modules/.prisma/client"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
