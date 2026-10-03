@@ -13,6 +13,6 @@ export function handleApiError(error: unknown) {
   if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
     return apiError('CONFLICT', 'A record with these details already exists.', 409);
   }
-  console.error('API request failed:', error instanceof Error ? error.name : 'UnknownError');
+  console.error('API request failed:', error instanceof Error ? `${error.name}: ${error.message}` : error);
   return apiError('SERVICE_UNAVAILABLE', 'The service is temporarily unavailable. Please retry.', 503);
 }
